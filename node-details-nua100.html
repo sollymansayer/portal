@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUWAY Capital - NUA100 Node Details</title>
+    <style>
+        @font-face {
+            font-family: 'Lucida Bright';
+            src: url('path_to_lucida_font');
+        }
+        @font-face {
+            font-family: 'Helvetica Now Display';
+            src: url('path_to_helvetica_font');
+        }
+        body {
+            font-family: 'Helvetica Now Display', sans-serif;
+            background-color: #F2F2F2;
+            margin: 0;
+        }
+        .sidebar {
+            width: 180px;
+            background-color: #042834;
+            color: white;
+            padding: 10px;
+            height: 100vh;
+            position: fixed;
+        }
+        .sidebar a {
+            display: block;
+            margin: 8px 0;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .content {
+            margin-left: 200px;
+            padding: 10px;
+        }
+        .summary {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        .node-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .node-info {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            width: 48%;
+        }
+        .node-info h3 {
+            margin-top: 0;
+            color: #042834;
+            font-family: 'Lucida Bright', serif;
+        }
+        .logs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .logs-table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #042834;
+            color: white;
+        }
+        .status-online {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="logo in white.png" alt="Nuway Capital Logo" style="width: 140px;"> <!-- Matching size -->
+        <a href="dashboard.html">Dashboard</a>
+        <a href="nodes.html">Nodes</a>
+    </div>
+
+    <div class="content">
+        <div class="summary">
+            <h2 style="font-family: 'Lucida Bright', serif;">Node: NUA100 (CA1-ESC812-531)</h2>
+            <div class="node-details">
+                <div class="node-info">
+                    <h3>Hardware Specification</h3>
+                    <p>8x A100 Server with 2x AMD EPYC 9554 64-Core Processor, 1536GB DDR5, 7.6TB NVMe</p>
+                </div>
+                <div class="node-info">
+                    <h3>Status</h3>
+                    <p class="status-online">Online</p>
+                    <h3>Commissioning Date</h3>
+                    <p>Jun 17, 2024</p>
+                    <h3>Current Month Revenue</h3>
+                    <p>$1,478.12</p>
+                    <h3>Total Revenue</h3>
+                    <p>$21,695.84</p>
+                </div>
+            </div>
+
+            <!-- Revenue Logs Section -->
+            <h3>Revenue Logs</h3>
+            <table class="logs-table">
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>September 2024</td>
+                        <td>$1,478.12</td>
+                    </tr>
+                    <tr>
+                        <td>August 2024</td>
+                        <td>$7,963.01</td>
+                    </tr>
+                    <tr>
+                        <td>July 2024</td>
+                        <td>$8,289.54</td>
+                    </tr>
+                    <tr>
+                        <td>June 2024</td>
+                        <td>$3,965.17</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

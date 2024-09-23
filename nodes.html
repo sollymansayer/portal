@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUWAY Capital - Nodes</title>
+    <style>
+        @font-face {
+            font-family: 'Lucida Bright';
+            src: url('path_to_lucida_font');
+        }
+        @font-face {
+            font-family: 'Helvetica Now Display';
+            src: url('path_to_helvetica_font');
+        }
+        body {
+            font-family: 'Helvetica Now Display', sans-serif;
+            background-color: #F2F2F2;
+            margin: 0;
+        }
+        .sidebar {
+            width: 180px; /* Reduced sidebar width */
+            background-color: #042834;
+            color: white;
+            padding: 10px;
+            height: 100vh;
+            position: fixed;
+        }
+        .sidebar a {
+            display: block;
+            margin: 8px 0;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .content {
+            margin-left: 200px;
+            padding: 10px;
+        }
+        .summary {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #042834;
+            color: white;
+        }
+        .status-online {
+            color: green;
+        }
+        .details-row {
+            display: none;
+            background-color: #F2F2F2;
+        }
+        .details-row td {
+            padding: 15px;
+        }
+        .view-details-btn {
+            background-color: #8C73C6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        input[type="text"], select {
+            padding: 8px;
+            margin-bottom: 15px;
+            width: 100%;
+            border: 1px solid #DDE3E8;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="logo in white.png" alt="Nuway Capital Logo" style="width: 140px;"> <!-- Matching size -->
+        <a href="dashboard.html">Dashboard</a>
+        <a href="nodes.html">Nodes</a>
+    </div>
+
+    <div class="content">
+        <div class="summary">
+            <h2 style="font-family: 'Lucida Bright', serif;">Nodes</h2>
+            
+            <!-- Search and Filter Options -->
+            <input type="text" id="nodeSearch" onkeyup="filterNodes()" placeholder="Search for a node...">
+            <select id="nodeFilter" onchange="filterNodes()">
+                <option value="all">All Nodes</option>
+                <option value="NUA100">NUA100</option>
+                <option value="NUH100">NUH100</option>
+            </select>
+            
+            <!-- Nodes Table -->
+            <table id="nodesTable">
+                <thead>
+                    <tr>
+                        <th>Node Name</th>
+                        <th>Node ID</th>
+                        <th>Commissioning Date</th>
+                        <th>Status</th>
+                        <th>Current Month Revenue</th>
+                        <th>Total Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- NUA100 Node -->
+                    <tr class="node-row" data-node="NUA100" onclick="toggleDetails(this)">
+                        <td>NUA100</td><td>CA1-ESC812-531</td><td>Jun 17, 2024</td><td><span class="status-online">Online</span></td><td>$1,478.12</td><td>$21,695.84</td>
+                    </tr>
+                    <tr class="details-row">
+                        <td colspan="6">
+                            <table>
+                                <tr><td>Month</td><td>Revenue</td></tr>
+                                <tr><td>Sep 2024</td><td>$1,478.12</td></tr>
+                                <tr><td>Aug 2024</td><td>$7,963.01</td></tr>
+                                <tr><td>Jul 2024</td><td>$8,289.54</td></tr>
+                                <tr><td>Jun 2024</td><td>$3,965.17</td></tr>
+                            </table>
+                            <a href="node-details-nua100.html" class="view-details-btn">View details</a>
+                        </td>
+                    </tr>
+
+                    <!-- NUH100 Node -->
+                    <tr class="node-row" data-node="NUH100" onclick="toggleDetails(this)">
+                        <td>NUH100</td><td>CA1-ESC812-406</td><td>Jul 4, 2024</td><td><span class="status-online">Online</span></td><td>$2,512.33</td><td>$28,978.01</td>
+                    </tr>
+                    <tr class="details-row">
+                        <td colspan="6">
+                            <table>
+                                <tr><td>Month</td><td>Revenue</td></tr>
+                                <tr><td>Sep 2024</td><td>$2,512.33</td></tr>
+                                <tr><td>Aug 2024</td><td>$14,522.12</td></tr>
+                                <tr><td>Jul 2024</td><td>$11,943.56</td></tr>
+                               
+                            </table>
+                            <a href="node-details-nuh100.html" class="view-details-btn">View details</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Filter function for nodes
+        function filterNodes() {
+            var input, filter, table, tr, td, i, txtValue, selectFilter, selectValue;
+            input = document.getElementById("nodeSearch");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("nodesTable");
+            tr = table.getElementsByTagName("tr");
+            selectFilter = document.getElementById("nodeFilter");
+            selectValue = selectFilter.value;
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if ((txtValue.toUpperCase().indexOf(filter) > -1 || filter === "") &&
+                        (selectValue === "all" || txtValue === selectValue)) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Function to toggle the details dropdown
+        function toggleDetails(row) {
+            var detailsRow = row.nextElementSibling;
+            if (detailsRow && detailsRow.classList.contains('details-row')) {
+                detailsRow.style.display = (detailsRow.style.display === 'table-row') ? 'none' : 'table-row';
+            }
+        }
+    </script>
+</body>
+</html>
